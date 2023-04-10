@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Embryo Lab</title>
+	<link rel="stylesheet" href="assets/styles/styles.css">
+</head>
+<body id="index">
+<nav>
+	<div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="Logo"></a></div>
+	<ul class="nav-menu">
+		<li class="menu-item"><a href="smart-grinder.html">SmartGrinder</a></li>
+		<li class="menu-item"><a href="mission.html">Mission</a></li>
+	</ul>
+	<!--<div class="percentage-box">
+		<div>
+			<span id="percent">0</span>%
+		</div>
+		<div>
+			<span id="progress">0</span>px
+		</div>
+	</div>-->
+</nav>
+<img src="assets/images/bg.png" class="background" alt="Rendered Backdrop">
+<div class="images">
+	<img src="assets/images/parts/5.png" id="image5" alt="">
+	<img src="assets/images/parts/4.png" id="image4" alt="">
+	<img src="assets/images/parts/2.png" id="image2" alt="">
+	<img src="assets/images/parts/3.png" id="image3" alt="">
+	<img src="assets/images/parts/1.png" id="image1" alt="">
+</div>
+
+<footer class="index">
+	<div class="social-icons">
+		<svg><use href="assets/svg/symbol-defs.svg#icon-linkedin"></use></svg>
+		<svg><use href="assets/svg/symbol-defs.svg#icon-facebook"></use></svg>
+		<svg class="bg-color"><use href="assets/svg/symbol-defs.svg#icon-instagram"></use></svg>
+		<svg><use href="assets/svg/symbol-defs.svg#icon-twitter"></use></svg>
+		<svg><use href="assets/svg/symbol-defs.svg#icon-tiktok"></use></svg>
+	</div>
+	<span class="copyright">Copyright © 2021 Embryo Labs Inc. All rights reserved.</span>
+</footer>
+<script>
+	document.addEventListener('scroll', scrollPosition);
+
+	images = [
+		{
+			element: document.querySelector('#image1'),
+			stickyTill: 0,
+			visible: true,
+		},
+		{
+			element: document.querySelector('#image2'),
+			stickyTill: 20,
+			visible: true,
+		},
+		{
+			element: document.querySelector('#image3'),
+			stickyTill: 40,
+			visible: true,
+		},
+		{
+			element: document.querySelector('#image4'),
+			stickyTill: 60,
+			visible: true,
+		},
+		{
+			element: document.querySelector('#image5'),
+			stickyTill: 80,
+			visible: true,
+		},
+	]
+
+	let windowHeight = window.innerHeight;
+	document.getElementById('index').style.height = (windowHeight * 5) + 'px';
+	function scrollPosition() {
+		var h = document.documentElement,
+			b = document.body,
+			st = 'scrollTop',
+			sh = 'scrollHeight';
+		let percent = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+		// document.getElementById('percent').innerText = Math.round(percent);
+		// document.getElementById('progress').innerText = h[st];
+		images.forEach(cur => {
+			if(percent >= cur.stickyTill && cur.visible) {
+				cur.element.style.position = 'absolute';
+				cur.element.style.top = h[st] + 'px';
+				cur.visible = false;
+			}
+			else if(percent <= cur.stickyTill) {
+				cur.element.style.position = 'fixed';
+				cur.element.style.top = 0 + 'px';
+				cur.visible = true;
+			}
+		});
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+::-webkit-scrollbar
+{
+	--size: .7rem;
+	width: var(--size);
+	height: var(--size);
+	overflow: visible;
+}
+
+::-webkit-scrollbar-thumb
+{
+	opacity: 0;
+	background-color: rgb($color-white, .2);
+	border-radius: 1rem;
+
+	&:hover
+	{
+		background-color: desaturate($color-accent-1, 40);
+	}
+
+	&:active
+	{
+		background-color: var(--color-accent-1);
+	}
+}
+
+::-webkit-scrollbar-track
+{
+	background-color: transparent;
+}
+
+*
+{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+html
+{
+	font-family: Monda, sans-serif;
+	font-size: 62.5%;
+	//font-size: calc(5px + (10 - 5) * (100vw - 600px) / (1920 - 600));
+	//font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+	@media screen and (max-width: 500px)
+	{
+		font-size: 80%;
+	}
+}
+
+body
+{
+	width: 100%;
+	background-color: var(--color-black);
+	color: var(--color-accent-1);
+	font-size: 1.6rem;
+}
+
+a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+nav
+{
+	position: sticky;
+	top: 0;
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	padding: 1.5rem;
+	z-index: 1;
+	background-color: inherit;
+	font-size: 2rem;
+
+	.logo
+	{
+		position: absolute;
+		left: 0;
+		padding: inherit;
+	}
+
+	.nav-menu
+	{
+		display: flex;
+		list-style: none;
+
+		.menu-item
+		{
+			&.active
+			{
+				a
+				{
+					color: inherit;
+				}
+			}
+
+			&:not(:last-child)
+			{
+				margin-right: 2rem;
+			}
+
+			a
+			{
+				color: desaturate($color-accent-1, 30);
+				&::after
+				{
+					content: "";
+					display: block;
+					background-color: var(--color-accent-1);
+					width: 0;
+					height: .3rem;
+					transition:
+					{
+						duration: .5s;
+						timing-function: ease;
+						property: width;
+					}
+				}
+
+				&:hover::after
+				{
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+.heading-primary
+{
+	font-weight: 700;
+	font-size: 4.4rem;
+}
+
+.heading-secondary
+{
+	font-weight: 700;
+	font-size: 3rem;
+}
+
+footer
+{
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 5rem;
+	font-size: 1.2rem;
+
+	.social-icons
+	{
+		> *:not(:last-child)
+		{
+			margin-right: 2.5rem;
+		}
+
+		svg
+		{
+			--size: 2rem;
+			height: var(--size);
+			width: var(--size);
+			fill: currentColor;
+		}
+	}
+}
